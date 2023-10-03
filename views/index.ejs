@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap" rel="stylesheet">
+    <title>API Project</title>
+</head>
+<body>
+<h1>Joke Genius</h1>
+<div class="container">
+
+<form id="myForm" method="post" action="/post-joke">
+    <label for="category">Choose a Category:</label>
+    <select id="category" name="category">
+        <option value="Any">Any</option>
+        <option value="Programming">Programming</option>
+        <option value="Misc">Misc</option>
+        <option value="Dark">Dark</option>
+        <option value="Pun">Pun</option>
+        <option value="Spooky">Spooky</option>
+        <option value="Christmas">Christmas</option>
+    </select>
+    <br>
+    <label for="searchBar">	
+        Search for a joke that
+        contains this search string:</label>
+    <input type="text" id="searchBar" name="searchBar">
+    <br>
+    <input class ="btn" type="submit" value="Submit" >
+</form>
+<%if(locals.data && data.error!=true && data!="null"){%>
+    <p class="response-area">
+        
+            Category: <%=data.category%>
+            <br>
+            <%if(data.type == "single"){%>
+            <%=data.joke%>
+            <%}else{%>
+                <%=data.setup%>
+                <br>
+                <%=data.delivery%>
+            <%}%>
+        
+            </p>
+<%}else{%>
+    <%if(data!="null"){%>
+    <p class="response-area">
+        
+        <%=data.message%>
+    
+        </p>
+    <%}%>
+<%}%>
+</div>
+</body>
+</html>
